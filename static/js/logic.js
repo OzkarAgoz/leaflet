@@ -34,7 +34,7 @@ function createMap(earthquakes) {
     var overlays = {"Earthquakes": earthquakes};
 
     //  map
-    var MM = L.map("map", {zoom: 4.3, center: [33, -99], layers: [nightMap, earthquakes]});
+    var MM = L.map("map", {layers: [nightMap, earthquakes]}).setView([33, -99],4) ;
 
     // Add plates data
 
