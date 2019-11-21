@@ -8,7 +8,7 @@ d3.json(earthquakes, function(data) {
 function createFeatures(earthquakeData) {
     var earthquakes = L.geoJSON(earthquakeData, {
         onEachFeature: function(feature, layer) {
-        layer.bindPopup("<p>" + "<center>" + feature.properties.mag + "<center>"+ "<p>" + new Date(feature.properties.time) + "</p>");  },
+        layer.bindPopup("<h3>" + "<center>Quake Info (Magnitude/Time) "  +"</h3>" + "<p>" + "<center>" + feature.properties.mag + "<center>"+ "<p>" + new Date(feature.properties.time) + "</p>");  },
 
           pointToLayer: function (feature, latlng) {
             return new L.circle(latlng,
