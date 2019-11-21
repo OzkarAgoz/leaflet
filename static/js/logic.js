@@ -1,5 +1,4 @@
 //  API queryURL and Getdata
-var majorfaultlines = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 var earthquakes = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
 
 d3.json(earthquakes, function(data) {
@@ -16,10 +15,7 @@ function createFeatures(earthquakeData) {
               {radius: getRadius(feature.properties.mag),
               fillColor: getColor(feature.properties.mag),
               color: "#black",
-              stroke: true,
-          })
-        }
-        });
+              stroke: true,     })  }  });
 
     createMap(earthquakes);             }
 
@@ -35,14 +31,12 @@ function createMap(earthquakes) {
     
       //  base maps and tectonic major plate layers
     var baseMaps = {"Night Map": nightMap, "Nav Map": navmap,"Lite Map": litemap     };
-    var faultlines = new L.LayerGroup();
-    var overlays = {"Earthquakes": earthquakes, "Fault Lines": faultlines};
+    var overlays = {"Earthquakes": earthquakes};
 
     //  map
-    var MM = L.map("map", {zoom: 4.3, center: [33, -99], layers: [nightMap, earthquakes, faultlines]});
+    var MM = L.map("map", {zoom: 4.3, center: [33, -99], layers: [nightMap, earthquakes]});
 
     // Add plates data
-    d3.json(majorfaultlines, function(tectonicData) {L.geoJson(tectonicData).addTo(faultlines); });
 
     //Add layer control and legend
     L.control.layers(baseMaps, overlays).addTo(MM);
